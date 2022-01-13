@@ -1,3 +1,15 @@
 from django.db import models
+from core import models as core_models
 
-# Create your models here.
+# https://www.airbnb.co.kr/wishlists/ 이거 참고
+
+class List(core_models.TimeStampedModel):
+
+    """ LIst Model Definition """
+
+    name = models.CharField(max_length=80)
+    user = models.ForeignKey("users.User", on_delete=models.CASCADE)
+    rooms = models.ManyToManyField("rooms.Room", blank=True)#list 하나에 여러 room이 있을 수 있음.
+
+    def __str__(self):
+        return self.name
