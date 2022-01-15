@@ -77,7 +77,7 @@ class Room(core_models.TimeStampedModel):
     checkout = models.TimeField()
     instant_book = models.BooleanField(default = False)
     host = models.ForeignKey("users.User", on_delete=models.CASCADE) #users앱 사용(1:1 관계), CASCADE = USER삭제되면 ROOM도삭제
-    room_type = models.ForeignKey("RoomType", blank=True, on_delete=models.SET_NULL, null = True) #다대다관계
+    room_type = models.ForeignKey("RoomType", blank=True, on_delete=models.SET_NULL, null = True) 
     amenities = models.ManyToManyField("Amenity", blank=True)
     facilities = models.ManyToManyField("Facility", blank=True)
     house_rules = models.ManyToManyField("HouseRule", blank=True)
