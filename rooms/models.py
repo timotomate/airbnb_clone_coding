@@ -27,8 +27,8 @@ class RoomType(AbstractItem):
 class Amenity(AbstractItem):
 
     """ RoomType Object Definition """
-     
-    pass
+    class Meta:
+        verbose_name_plural = 'Amenities'
 
 
 class Facility(AbstractItem):
@@ -73,11 +73,12 @@ class Room(core_models.TimeStampedModel):
     beds = models.IntegerField()
     bedrooms = models.IntegerField()
     baths = models.IntegerField()
-    checkin = models.TimeField()
-    checkout = models.TimeField()
+    check_in = models.TimeField()
+    check_out = models.TimeField()
     instant_book = models.BooleanField(default = False)
-    host = models.ForeignKey("users.User", on_delete=models.CASCADE) #users앱 사용(1:1 관계), CASCADE = USER삭제되면 ROOM도삭제
-    room_type = models.ForeignKey("RoomType", blank=True, on_delete=models.SET_NULL, null = True) 
+    host = models.ForeignKey("users.User", on_delete=models.CASCADE)#users 폴더의 user
+    room_type = models.ForeignKey("RoomType", blank=True, on_delete=models.SET_NULL, null = True)
+    #1 User, Many Rooms
     amenities = models.ManyToManyField("Amenity", blank=True)
     facilities = models.ManyToManyField("Facility", blank=True)
     house_rules = models.ManyToManyField("HouseRule", blank=True)

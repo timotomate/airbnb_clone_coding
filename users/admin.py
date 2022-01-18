@@ -15,5 +15,5 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = UserAdmin.fieldsets + (("Custom Profile", 
     {"fields" : ("avatar", "gender", "bio", "birthdate", "language", "currency", "superhost")}),)
 
-    #list_display = ('username', 'email', 'gender', 'language', 'currency', 'superhost')
-    #list_filter = ('language', 'currency', 'superhost')
+    list_display = ('username', 'email', 'gender', 'language', 'currency', 'superhost')
+    list_filter = ('language', 'currency')

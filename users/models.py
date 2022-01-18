@@ -40,3 +40,6 @@ class User(AbstractUser): #여기다가 코드 작성하면 장고가 아래 항
     language = models.CharField(choices = LANGUAGE_CHOICES, max_length = 6, blank = True)
     currency = models.CharField(choices=CURRENCH_CHOICES, max_length = 3, blank = True)
     superhost = models.BooleanField(default=False)
+
+    # def __str__(self):
+    #     return "SEXY"

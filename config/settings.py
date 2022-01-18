@@ -40,6 +40,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = ['django_countries', ]
 
+#앱들의 이름은 각종 앱 폴더의 apps.py에 등록되어 있는 이름을 등록 하는 것
 PROJECT_APPS = [
     'core.apps.CoreConfig',
     'users.apps.UsersConfig', 
