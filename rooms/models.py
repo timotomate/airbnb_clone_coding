@@ -51,7 +51,7 @@ class Photo(core_models.TimeStampedModel):
 
     caption = models.CharField(max_length = 80)
     file = models.ImageField()
-    room = models.ForeignKey("Room", on_delete=models.CASCADE) #방을 지우면 사진도 같이 삭제되도록
+    room = models.ForeignKey("Room", related_name="photos", on_delete=models.CASCADE) #방을 지우면 사진도 같이 삭제되도록
 
     def __str__(self):
         return self.caption
@@ -76,12 +76,12 @@ class Room(core_models.TimeStampedModel):
     check_in = models.TimeField()
     check_out = models.TimeField()
     instant_book = models.BooleanField(default = False)
-    host = models.ForeignKey("users.User", on_delete=models.CASCADE)#users 폴더의 user
-    room_type = models.ForeignKey("RoomType", blank=True, on_delete=models.SET_NULL, null = True)
+    host = models.ForeignKey("users.User", related_name = "rooms", on_delete=models.CASCADE)#users 폴더의 user
+    room_type = models.ForeignKey("RoomType", related_name = "rooms", blank=True, on_delete=models.SET_NULL, null = True)
     #1 User, Many Rooms
-    amenities = models.ManyToManyField("Amenity", blank=True)
-    facilities = models.ManyToManyField("Facility", blank=True)
-    house_rules = models.ManyToManyField("HouseRule", blank=True)
+    amenities = models.ManyToManyField("Amenity", related_name="rooms", blank=True)
+    facilities = models.ManyToManyField("Facility", related_name="rooms", blank=True)
+    house_rules = models.ManyToManyField("HouseRule", related_name="rooms", blank=True)
 
 
     def __str__(self):
