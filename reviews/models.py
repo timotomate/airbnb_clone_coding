@@ -16,8 +16,20 @@ class Review(core_models.TimeStampedModel):
     value = models.IntegerField()
     user = models.ForeignKey("users.User", related_name="reviews", on_delete=models.CASCADE)
     room = models.ForeignKey("rooms.Room", related_name="reviews", on_delete=models.CASCADE)
-    
+
     def __str__(self):
         return f'{self.review} - {self.room}'
         #return self.room.host.username #room클래스의 변수 room -> host(user.User) -> Users클래스의 멤버변수 username에 접근
-        
+    
+    def rating_average(self):
+        avg = (
+            self.accuracy + 
+            self.communication +
+            self.cleanliness +
+            self.location +
+            self.check_in +
+            self.value
+        ) / 6
+        return round(avg, 2)
+    
+    rating_average.short_description = "Avg."
