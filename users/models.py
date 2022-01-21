@@ -33,7 +33,7 @@ class User(AbstractUser): #여기다가 코드 작성하면 장고가 아래 항
         (CURRENCY_KRW, "krw")
     )
 
-    avatar = models.ImageField(blank=True)
+    avatar = models.ImageField(upload_to="avatars",blank=True)
     gender = models.CharField(choices = GENDER_CHOICES, max_length=10, blank=True)
     bio = models.TextField(blank=True)
     birthdate = models.DateField(blank = True, null=True)
