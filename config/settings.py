@@ -37,7 +37,7 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-THIRD_PARTY_APPS = ['django_countries', ]
+THIRD_PARTY_APPS = ['django_countries', 'django_seed']
 
 #앱들의 이름은 각종 앱 폴더의 apps.py에 등록되어 있는 이름을 등록 하는 것
 PROJECT_APPS = [
