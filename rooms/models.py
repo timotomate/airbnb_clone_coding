@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django_countries.fields import CountryField
 from core import models as core_models
 from users import models as user_models #users의 앱(패키지) 사용
@@ -95,3 +96,7 @@ class Room(core_models.TimeStampedModel):
                 all_ratings += review.rating_average()
             return round(all_ratings / len(all_reviews))
         return 0
+
+    #admin 패널에서 바로 프론트엔드 부분으로
+    def get_absolute_url(self):
+        return reverse("rooms:detail", kwargs = {'pk':self.pk})
